@@ -1,18 +1,26 @@
 {
-  "name": "chetan",
+  "name": "chetan-fullstack-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Production full-stack application (React + Node.js)",
+  "private": true,
+  "type": "commonjs",
   "scripts": {
     "client": "npm run dev --prefix client",
     "server": "npm run dev --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install-all": "npm install && npm install --prefix client && npm install --prefix server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install:all": "npm install && npm install --prefix client && npm install --prefix server",
+    "build:client": "npm run build --prefix client",
+    "build:server": "npm install --prefix server --production",
+    "build": "npm run build:client && npm run build:server",
+    "start:server": "npm run start --prefix server",
+    "start": "node server/index.js",
+    "pm2:start": "pm2 start server/index.js --name chetan-api",
+    "pm2:stop": "pm2 stop chetan-api",
+    "pm2:restart": "pm2 restart chetan-api",
+    "pm2:logs": "pm2 logs chetan-api",
+    "clean": "rm -rf node_modules client/node_modules server/node_modules",
+    "test": "echo \"No tests configured\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "devDependencies": {
     "concurrently": "^9.2.1"
   }
